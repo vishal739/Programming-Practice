@@ -1,10 +1,13 @@
 #include <iostream>
+#include<limits.h>
+
 using namespace std;
 
-int temp, j, key;
+int i, temp, j, key;
 
 void BubbleSort(int *arr, int n)
 {
+    int pass=1,k;
     for (int i = 0; i < n - 1; i++) // No. of Passes
     {
         for (int j = 0; j < n - 1 - i; j++) // No. of Comparisons
@@ -15,6 +18,10 @@ void BubbleSort(int *arr, int n)
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
             }
+        }
+        printf("\nPass %d: ",pass++);
+        for(k=0;k<n;k++){
+            printf("%5d\t",arr[k]);
         }
     }
 }
@@ -44,6 +51,7 @@ void AdaptiveBubbleSort(int *arr, int n)
 }
 void InsSort(int *arr, int n)
 {
+    int k,pass=1;
     for (int i = 1; i <= n - 1; i++)
     {
         key = arr[i];
@@ -54,7 +62,12 @@ void InsSort(int *arr, int n)
             j--;
         }
         arr[j + 1] = key;
+        
     }
+}
+printf("\nPass %d: ",pass++);
+        for(k=0;k<n;k++){
+            printf("%5d\t",arr[k]);
 }
 
 void SelSort(int *arr, int n)
@@ -133,13 +146,111 @@ int partition(int *arr, int low, int high)
     return j;
 }
 
-void quicksort(int *arr,int low, int high){
-    
-    if(low<high){
-    int Ind= partition(arr,low,high);
-    quicksort(arr,low,Ind-1);
-    quicksort(arr,Ind+1,high);
+void quicksort(int *arr, int low, int high)
+{
+
+    if (low < high)
+    {
+        int Ind = partition(arr, low, high);
+        quicksort(arr, low, Ind - 1);
+        quicksort(arr, Ind + 1, high);
     }
+}
+
+void merge(int arr[], int mid, int low, int high)
+{
+    int k;
+    int b[100];
+    i = low;
+    j = mid + 1;
+    k = low;
+    while (i <= mid && j <= high)
+    {
+        if (arr[i] < arr[j])
+        {
+            b[k] = arr[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            b[k] = arr[j];
+            j++;
+            k++;
+        }
+    }
+    while (i <= mid)
+    {
+        b[k] = arr[i];
+        i++;
+        k++;
+    }
+    while (j <= high)
+    {
+        b[k] = arr[j];
+        j++;
+        k++;
+    }
+
+    for (i = low; i <= high; i++)
+    {
+        arr[i] = b[i];
+       
+    }
+}
+
+void mergesort(int arr[], int low, int high)
+{
+    int mid;
+    if (low < high)
+    {
+        mid = (low + high) / 2;
+
+        mergesort(arr, low, mid);
+        mergesort(arr, mid + 1, high);
+        merge(arr, mid, low, high);
+    }
+}
+
+int maximum(int arr[], int n){
+    int max= INT_MIN;
+    for(int i= 0; i< n; i++){
+        if(max< arr[i]){
+            max= arr[i];
+        }
+    }
+    return max;
+}
+
+void countsort(int *A, int n){
+    int i, j;
+
+    int max= maximum(A, n);
+    int *count= (int*)malloc((max+1)*sizeof(int));
+    for ( i = 0; i < max+1; i++)
+    {
+        count[i]=0;
+    }
+    for ( i = 0; i < n; i++)
+    {   
+        printf("%d = %d \n", count[A[i]], count[A[i]]+1 );
+        count[A[i]]=count[A[i]] +1;
+    }
+    i=0;
+    j=0;
+    while(i<=max){
+        if(count[i]>0){
+            A[j]=i;
+            printf("%d-->%d \n", A[j],i);
+            printf("%d = %d \n", count[i], count[i]-1 );
+            count[i]=count[i]-1;
+            j++;
+        }
+        else{
+            i++;
+        }
+    }
+    
 }
 
 void display(int *arr, int n)
@@ -152,14 +263,19 @@ void display(int *arr, int n)
 }
 int main()
 {
-    int arr[] = {1, 7, 5, 13, 12, 11};
-    int n = 6;
-    display(arr, 6);
+    int arr[] = {5,8,4,1,3};
+    // int arry[] = {3, 8, 9, 10, 12, 24};
+    // int merge[100];
+    // display(arr, 7);
     // AdaptiveBubbleSort(arr,6);
-    // InsSort(arr,6);
+    // InsSort(arr,5);
     // SelSort(arr,6);
-    quicksort(arr,0, n-1);
-    display(arr, 6);
+    // quicksort(arr,0, n-1);
+    // mergesort(arr, 0, 6);
+    // BubbleSort(arr,5);
+    // display(arr, 5);
+    countsort(arr,5);
+    display(arr, 5);
 
     return 0;
 }

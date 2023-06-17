@@ -28,7 +28,8 @@ struct Node *insatstart(struct Node *head, int data)
     struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
     ptr->Next = head;
     ptr->data = data;
-    return ptr;
+    head= ptr;
+    return head;
 }
 struct Node *insatIndex(struct Node *head, int data, int Index)
 {
@@ -128,36 +129,33 @@ while(q->data!=data && q->Next!=NULL){
     return head;
 
 }
-// void insLinked(struct Node *head, int data)
-// {
-//     struct Node *ptr=  (struct Node *)malloc(sizeof(struct Node));
-//     int x;
-//     cout << "Please Enter Your Choice for insertion " << endl;
-//     cin >> x;
-//     switch (x)
-//     {
-//     case 1:
-//         ptr->Next = head;
-//         ptr->data = data;
-//         // return New;
-//     case 2:
-//         ptr->Next=New->Next;
-//         New->Next= ptr;
-//     case 3:
-//         New->Next=ptr;
-//         ptr->Next=NULL;
-//     case 4:
-//         ptr->Next=New->Next;
-//         New->Next=ptr;
+
+// struct Node *Reverse(struct Node *head){
+//     struct Node *prev=head;
+//     struct Node *q=head->Next;
+//     struct Node *curr;
+//     while(q->Next!=NULL){
+//         q= q->Next;
+//         prev= prev->Next;
+//     `while(q->Next=
+
+//         printf("<%d>",prev->data);
+//     printf("%d",q->data);
 //     }
+    
+   
+   
 // }
-void Display(struct Node *ptr)
-{
+
+int Display(struct Node *head)
+{   
+    struct Node *ptr=head;
+    if(ptr==NULL){
+        return 0;
+    }
     cout << ptr->data << endl;
     ptr = ptr->Next;
-    cout << ptr->data << endl;
-    ptr = ptr->Next;
-    cout << ptr->data << endl;
+    return Display(ptr);
 }
 int main()
 {
@@ -187,7 +185,7 @@ int main()
     // cout << head->data;
     // Linkedscan(head);
     // insLinked(second,New);
-    LinkedTrav(head);
+   // LinkedTrav(head);
     // head = insatstart(head, 50);
     // head = insatIndex(head, 69, 3);
     // head = InsatEnd(head,50);
@@ -195,8 +193,12 @@ int main()
     // head= DelatFirst(head);
     // head= DelatBTW(head,2);
     // head= DelatLast(head);
-    head= DelVal(head,18);
-    LinkedTrav(head);
+    //head= DelVal(head,18);
+    //LinkedTrav(head);
     // Display(head);
+    Reverse(head);
+    //Display(head);
+
     return 0;
 }
+

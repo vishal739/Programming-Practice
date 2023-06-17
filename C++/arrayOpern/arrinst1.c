@@ -4,7 +4,7 @@
 int main()
 {
     int A[] = {10, 20, 30, 40, 50};
-    int item = 11, k = 2, n = 5;
+    int item = 11, k = 3, n = 5;
     int i = 0, j = n;
     printf("Total Elements in arrays are: \n");
     for (i = 0; i < n; i++)

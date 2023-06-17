@@ -39,11 +39,31 @@ int deQueue(struct queue *q)
 void showQueue(struct queue *q)
 
 {
-    for (int i = q->f+1; i <= q->r; i++)
-    {
+    for (int i = q->f; i <= q->r; i++)
+    {   
         cout << "Queue " << q->arr[i] << endl;
-
+        i=(i+1)%q->size;
     }
+}
+void CirEnqueue(struct queue *q,int data){
+    if((q->r+1)%q->size==q->f){
+        cout<<"circular Queue Overflow "<<endl;
+    }
+    else{
+        q->r=(q->r+1)%q->size;
+        q->arr[q->r]=data;
+    }
+}
+int CirDequeue(struct queue *q){
+    int val= -1;
+    if(q->f==q->r){
+        printf("Circular Queue is Empty");
+    }
+    else{
+        q->f=(q->f+1)%q->size;
+        val=q->arr[q->f];
+    }
+    return val;
 }
 int main()
 
@@ -51,8 +71,8 @@ int main()
     int data,choice;
     
     struct queue q;
-    q.size = 100;
-    q.f = q.r = -1;
+    q.size = 5;
+    q.f = q.r = 0;
     q.arr = (int *)malloc(q.size * sizeof(int));
     while(true){
     cout<<"Enter Choice "<<endl;
@@ -63,10 +83,12 @@ int main()
     case 1:
         cout<<"Give value"<<endl;
         cin>>data;
-         enQueue(&q, data);
+        //  enQueue(&q, data);
+        CirEnqueue(&q,data);
         break;
     case 2:
-        deQueue(&q);
+        // deQueue(&q);
+        CirDequeue(&q);
         break;
     case 3:
         showQueue(&q);
