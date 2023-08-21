@@ -23,8 +23,12 @@ void sortEdges(){
 }
 
 int findUParent(int u){
-    if(u == parent[u]) return u;
+    if(u == parent[u])
+        return u;
     return parent[u] = findUParent(parent[u]);
+
+
+    
 }
 
 //union is reserved keyword

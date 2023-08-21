@@ -12,7 +12,6 @@ void dfs(int graph[][max], int visited[], int start) {
         for (i = 0; i < max; i++) {
             if (graph[start][i] == 1 && visited[i] == 0) {
                 stack[++top] = i;
-                
                 printf("%c  ", i + 65);
                 visited[i] = 1;
             }

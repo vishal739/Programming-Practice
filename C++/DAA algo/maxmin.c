@@ -10,7 +10,7 @@ void maxmin(int a[], int left, int right)
     }
     else if (left == right - 1)
     {
-        printf("%d-->%d",left,right-1);
+    //     prinf("%d-->%d",left,right-1);
         if (a[left] < a[right])
         {
             max = a[right];
@@ -34,7 +34,7 @@ void maxmin(int a[], int left, int right)
         {
             max = max1;
         }
-        if (min > min1)
+        if (min1 < min)
         {
             min = min1;
         }
@@ -55,3 +55,4 @@ int main()
     printf("Min=%d \n", min);
     return 0;
 }
+

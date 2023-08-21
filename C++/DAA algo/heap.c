@@ -22,7 +22,6 @@ void Heapify(int a[], int n, int i){
         swap(a,i,largest);
         Heapify(a,n,largest);
     }
-    printf("Heapify");
 }
 
 void buildHeap(int a[], int n){
@@ -53,8 +52,7 @@ int main(){
         scanf("%d", &a[i]);
     }
 
-    // heapsort(a, n);
-    Heapify(a,n,i);
+    heapsort(a, n);
 
     printf("Sorted array: ");
     for(i = 0; i < n; i++){

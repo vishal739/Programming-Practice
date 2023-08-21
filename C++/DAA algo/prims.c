@@ -45,9 +45,10 @@ void primMST(int graph[V][V])
     int key[V];
     int mstSet[V];
 
-    for (int i = 0; i < V; i++)
-        key[i] = INT_MAX, mstSet[i] = 0;
-
+    for (int i = 0; i < V; i++){
+        key[i] = INT_MAX;
+        mstSet[i] = 0;
+    }
     key[0] = 0;
     parent[0] = -1;
 
@@ -59,7 +60,8 @@ void primMST(int graph[V][V])
 
         for (int v = 0; v < V; v++)
             if (graph[u][v] && mstSet[v] == 0 && graph[u][v] < key[v])
-                parent[v] = u, key[v] = graph[u][v];
+                parent[v] = u; 
+                key[v] = graph[u][v];
     }
 
     printMST(parent, graph);

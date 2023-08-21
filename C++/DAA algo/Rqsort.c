@@ -34,7 +34,7 @@ int partition(int arr[], int low, int high)
 
 int partition_r(int arr[], int low, int high)
 {
-	srand(time(0));
+	// srand(time(0));
 	int random = low + rand() % (high - low);
     // printf("rand= %d->",random);
 	swap(&arr[random],&arr[low]);
@@ -51,6 +51,12 @@ void quickSort(int arr[], int low, int high)
 		quickSort(arr, pi + 1, high);
 	}
 }
+
+// int kthSmallest(int arr[], int l, int r, int k) {
+//         //code here
+//         quickSort(arr, 0, r - 1);
+//         return arr[k-1];
+// 	    }
 
 void printArray(int arr[], int n)
 {
